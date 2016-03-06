@@ -9,11 +9,12 @@ We need a web interface to the ClearSCADA ODBC database.
 In `.env` you should set:
 
 - `DSN_NAME` (name of your DSN)
+- `USE_PERSISTENT_ODBC` (true or false, whether to use a persistent ODBC connection)
 - `ENVIRONMENT` (either `PRODUCTION` or `DEVELOPMENT`)
 
 These are optional:
 
-- `ROLLBAR_ACCESS_TOKEN`
+- `ROLLBAR_ACCESS_TOKEN` (for logging to Rollbar dashboard)
 
 ## Usage
 
