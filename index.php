@@ -56,15 +56,15 @@ foreach ($json as $sql) {
     $query_response_rows = array();
 
     $result = odbc_exec($handle, $sql);
-    if ($result === false) {
-        http_response_code(500);
-        $error = odbc_errormsg($result);
-        die('Could not execute query: "'.$sql.'". The error (if any) was: '.$error);
-    } else {
+    if ($result) {
         while ($row = odbc_fetch_array($result)) {
             $query_response_rows[] = $row;
         }
         debug('Query returned '.count($query_response_rows).' rows');
+    } else {
+        http_response_code(500);
+        $error = odbc_errormsg($result);
+        die('Could not execute query: "'.$sql.'". The error (if any) was: '.$error);
     }
 
     // add an inner array to our overall response
