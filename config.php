@@ -9,6 +9,7 @@ $dotenv->required('SCADAFARM_ENVIRONMENT')->allowedValues([
 	'PRODUCTION'
 ]);
 $dotenv->required(['ENVIRONMENT']);
+$dotenv->required(['USE_PERSISTENT_ODBC']);
 $dotenv->load();
 
 if (!empty($_ENV['ROLLBAR_ACCESS_TOKEN'])) {
@@ -20,4 +21,13 @@ if (!empty($_ENV['ROLLBAR_ACCESS_TOKEN'])) {
 	} else {
 		error_log('Rollbar App ID found in .env, but Rollbar not installed.');
 	}
+}
+
+//
+// debug message helper
+//
+function debug($message) {
+    if ($_ENV['ENVIRONMENT'] === 'DEVELOPMENT') {
+        error_log($message);
+    }
 }
