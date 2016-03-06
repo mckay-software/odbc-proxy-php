@@ -4,7 +4,7 @@ require_once __DIR__.'/vendor/autoload.php';
 
 $dotenv = new Dotenv\Dotenv(__DIR__);
 $dotenv->overload();
-$dotenv->required('SCADAFARM_ENVIRONMENT')->allowedValues([
+$dotenv->required('ENVIRONMENT')->allowedValues([
 	'DEVELOPMENT',
 	'PRODUCTION'
 ]);
