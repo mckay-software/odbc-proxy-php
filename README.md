@@ -57,4 +57,17 @@ For example:
 
 ## Errors
 
-If any SQL query is invalid, the response will be an HTTP 500.
+The script will return HTTP 500 if:
+
+- Any SQL query is invalid
+- Can't connect to ODBC
+- Could not decode JSON
+- JSON was not an array of SQL queries
+
+The script will return HTTP 405 if:
+
+- The POST body was empty
+
+## Troubleshooting
+
+Set `ENVIRONMENT` to `DEVELOP` in your `.env` to turn on verbose logging to `error_log`.
