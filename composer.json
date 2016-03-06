@@ -1,0 +1,15 @@
+{
+    "name": "mckay/odbc-proxy-php",
+    "description": "PHP version of the ODBC proxy.",
+    "license": "Proprietary",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "authors": [
+        {"name": "McKay Ltd", "email": "hellow@mckaysoftware.co.nz"},
+        {"name": "Will Pearse", "email": "william.pearse@mckay.co.nz"}
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^2.0.1",
+        "rollbar/rollbar": "~0.15.0"
+    }
+}

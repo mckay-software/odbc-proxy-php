@@ -6,7 +6,14 @@ We need a web interface to the ClearSCADA ODBC database.
 
 ## Configuration
 
-Set `DSN_NAME` in the `.env` file.
+In `.env` you should set:
+
+- `DSN_NAME` (name of your DSN)
+- `ENVIRONMENT` (either `PRODUCTION` or `DEVELOPMENT`)
+
+These are optional:
+
+- `ROLLBAR_ACCESS_TOKEN`
 
 ## Usage
 
