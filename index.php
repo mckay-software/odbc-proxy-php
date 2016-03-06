@@ -7,9 +7,9 @@ require_once(__DIR__.'/config.php');
 //
 $handle = false;
 if ($_ENV['USE_PERSISTENT_ODBC']) {
-    $handle = odbc_pconnect($_ENV['DSN']);
+    $handle = odbc_pconnect($_ENV['DSN'], $_ENV['DSN_USER'], $_ENV['DSN_PASSWORD']);
 } else {
-    $handle = odbc_connect($_ENV['DSN']);
+    $handle = odbc_connect($_ENV['DSN'], $_ENV['DSN_USER'], $_ENV['DSN_PASSWORD']);
 }
 
 if ($handle === false) {

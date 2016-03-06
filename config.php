@@ -9,6 +9,8 @@ $dotenv->required('ENVIRONMENT')->allowedValues([
 	'PRODUCTION'
 ]);
 $dotenv->required(['ENVIRONMENT']);
+$dotenv->required(['DSN_USER']);
+$dotenv->required(['DSN_PASSWORD']);
 $dotenv->required(['USE_PERSISTENT_ODBC']);
 $dotenv->load();
 
