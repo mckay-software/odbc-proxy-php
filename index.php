@@ -12,10 +12,11 @@ if ($_ENV['USE_PERSISTENT_ODBC']) {
     $handle = odbc_connect($_ENV['DSN'], $_ENV['DSN_USER'], $_ENV['DSN_PASSWORD']);
 }
 
-if ($handle === false) {
+if (!$handle) {
     http_response_code(500);
     die('Could not connect to ODBC DSN: '.$_ENV['DSN']);
 }
+
 debug('Connected to ODBC '.$_ENV['DSN']);
 
 //
@@ -55,7 +56,7 @@ foreach ($json as $sql) {
     // we'll populate this array with our rows from ODBC
     $query_response_rows = array();
 
-    $result = odbc_exec($handle, $sql);
+    $result = @odbc_exec($handle, $sql);
     if ($result) {
         while ($row = odbc_fetch_array($result)) {
             $query_response_rows[] = $row;
@@ -71,7 +72,9 @@ foreach ($json as $sql) {
     $response[] = $query_response_rows;
 
     // frees memory associated with the query
-    odbc_free_result($result);
+    if ($result) {
+        odbc_free_result($result);
+    }
 }
 
 header('Content-Type: application/json');
@@ -80,7 +83,6 @@ echo json_encode($response);
 //
 // disconnect from odbc
 //
-$handle = false;
-if (!$_ENV['USE_PERSISTENT_ODBC']) {
+if ($handle && !$_ENV['USE_PERSISTENT_ODBC']) {
     odbc_close($handle);
 }
