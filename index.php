@@ -69,7 +69,7 @@ foreach ($json as $sql) {
     }
 
     // add an inner array to our overall response
-    $response[] = $query_response_rows;
+    $response[] = force_encoding($query_response_rows);
 
     // frees memory associated with the query
     if ($result) {
