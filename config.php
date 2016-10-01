@@ -38,15 +38,15 @@ function debug($message) {
 // forces UTF-8 encoding
 //
 function force_encoding($array) {
-		if ($array && is_array($array)) {
-			// There's some UTF-8 issue in PHP 5.5 that we didn't see in PHP 5.3,
-			// the solution is to iterate over the array and make sure that
-			// everything is encoded as UTF-8
-			array_walk_recursive($array, function(&$item, $key){
-		        if (!mb_detect_encoding($item, 'utf-8', true)) {
-		        	$item = utf8_encode($item);
-		        }
-		    });
-		}
-		return $array;
+	if ($array && is_array($array)) {
+		// There's some UTF-8 issue in PHP 5.5 that we didn't see in PHP 5.3,
+		// the solution is to iterate over the array and make sure that
+		// everything is encoded as UTF-8
+		array_walk_recursive($array, function(&$item, $key){
+	        if (!mb_detect_encoding($item, 'utf-8', true)) {
+	        	$item = utf8_encode($item);
+	        }
+	    });
 	}
+	return $array;
+}
