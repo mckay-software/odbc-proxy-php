@@ -33,7 +33,7 @@ if (strlen($body) == 0) {
 //
 $json = @json_decode($body);
 if ($json === false) {
-    http_response_code(500);
+    http_response_code(400);
     die('Could not decode JSON. Check your encoding.');
 }
 
@@ -41,7 +41,7 @@ if ($json === false) {
 // make sure we've been given an array of SQL queries
 //
 if (!is_array($json)) {
-    http_response_code(500);
+    http_response_code(400);
     die('Expected JSON array of SQL queries.');
 }
 debug('Got '.count($json).' queries to execute');
@@ -63,7 +63,7 @@ foreach ($json as $sql) {
         }
         debug('Query returned '.count($query_response_rows).' rows');
     } else {
-        http_response_code(500);
+        http_response_code(502);
         $error = odbc_errormsg($result);
         die('Could not execute query: "'.$sql.'". The error (if any) was: '.$error);
     }
